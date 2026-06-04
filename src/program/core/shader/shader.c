@@ -41,6 +41,8 @@ static int shaderCreateFromFile(const char *fileName, unsigned int *vertexShader
         exit(-1);
     }
 
+    shaderCode[fileSize] = '\0'; // null-terminate shader source: glShaderSource(len=NULL) expects a C string
+
     glShaderSource(*vertexShader, 1, (const char **)&shaderCode, NULL);
 
     glCompileShader(*vertexShader);
