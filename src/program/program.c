@@ -96,8 +96,8 @@ Program programCreate()
 
 void programMainLoop(Program this, int maxFrames)
 {
-    bool demoMode = true;
     int frameCount = 0;
+    bool demoMode = true;
 
     initThreads(&this);
     initThreadInfo(&this);
@@ -107,10 +107,11 @@ void programMainLoop(Program this, int maxFrames)
 
     while (glfwGetKey(this.graphics.window, GLFW_KEY_ESCAPE) != GLFW_PRESS)
     {
-        if (maxFrames > 0 && frameCount >= maxFrames)
+        if (maxFrames != -1 && maxFrames <= frameCount) {
             break;
-        frameCount++;
+        }
 
+        frameCount++;
         this.deltaTime = 1.0 / 60.0;
 
         #ifdef DEMO_MODE

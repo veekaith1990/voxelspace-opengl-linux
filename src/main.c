@@ -1,15 +1,16 @@
 #include "program/program.h"
-#include <string.h>
+
 #include <stdlib.h>
+#include <string.h>
 
 int main(int argc, char **argv)
 {
-    // --max-frames N : render N frames then exit
-    int maxFrames = 0;
-    for (int i = 1; i < argc; i++)
-    {
-        if (strcmp(argv[i], "--max-frames") == 0 && i + 1 < argc)
-            maxFrames = atoi(argv[++i]);
+    // --max-frames <n> makes the program renders up to n frames
+    int maxFrames = -1;
+    for (int i = 1; i < argc; ++i) {
+        if (strcmp(argv[i], "--max-frames") == 0) {
+            maxFrames = atoi(argv[i + 1]);
+        }
     }
 
     Program this = programCreate();
