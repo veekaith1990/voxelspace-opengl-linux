@@ -94,10 +94,10 @@ Program programCreate()
     return this;
 }
 
-void programMainLoop(Program this)
+void programMainLoop(Program this, int maxFrames)
 {
-    double lastUpdate = 0;
     bool demoMode = true;
+    int frameCount = 0;
 
     initThreads(&this);
     initThreadInfo(&this);
@@ -107,8 +107,11 @@ void programMainLoop(Program this)
 
     while (glfwGetKey(this.graphics.window, GLFW_KEY_ESCAPE) != GLFW_PRESS)
     {
-        this.deltaTime = glfwGetTime() - lastUpdate;
-        lastUpdate = glfwGetTime();
+        if (maxFrames > 0 && frameCount >= maxFrames)
+            break;
+        frameCount++;
+
+        this.deltaTime = 1.0 / 60.0;
 
         #ifdef DEMO_MODE
             processDemoMode(&this);

@@ -53,7 +53,7 @@ typedef struct Program
 } Program;
 
 Program programCreate();
-void programMainLoop(Program this);
+void programMainLoop(Program this, int maxFrames);
 void programDestroy(Program this);
 
 #endif
