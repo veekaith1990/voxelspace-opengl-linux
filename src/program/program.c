@@ -241,7 +241,7 @@ static inline void processDemoMode(Program *this)
     this->cameraPosition.y += this->cameraSpeed * this->deltaTime;
     this->cameraPosition.x += this->cameraSpeed * this->deltaTime;
     this->lookingAngle -= this->angularSpeed * this->deltaTime;
-    if (glfwGetTime() - this->stopwatchStart > 3.0)
+    if (glfwGetTime() - this->stopwatchStart > 0.25)
     {
         this->mapIndex += 1;
         this->mapIndex %= MAP_COUNT;
